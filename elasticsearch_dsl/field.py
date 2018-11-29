@@ -90,6 +90,11 @@ class Field(DslBase):
                 for d in data
             ]
             return data
+        elif isinstance(data, tuple):
+            return tuple(
+                None if d is None else self._deserialize(d)
+                for d in data
+            )
         if data is None:
             return None
         return self._deserialize(data)
